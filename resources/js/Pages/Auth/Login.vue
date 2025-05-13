@@ -2,11 +2,16 @@
 import Container from '../../Components/Container.vue';
 import Title from '../../Components/Title.vue';
 import ErrorMessages from '../../Components/ErrorMessages.vue'
+import SessionMessage from '../../Components/SessionMessage.vue'
 import InputField from '../../Components/InputField.vue';
 import PrimaryBtn from '../../Components/PrimaryBtn.vue';
 import TextLink from '../../Components/TextLink.vue';
 import Checkbox from '../../Components/Checkbox.vue';
 import { useForm } from '@inertiajs/vue3';
+
+defineProps({
+    status: String
+})
 
 const form = useForm({
     email: '',
@@ -27,11 +32,11 @@ const submit = () => {
         <div class="mb-8 text-center">
             <Title>Login your account</Title>
             <p>Want to create new accout? <TextLink routeName="register" label="register" /></p>
-
         </div>
 
         <!-- Error messages -->
         <ErrorMessages :errors="form.errors" />
+        <SessionMessage :status="status" />
 
         <form @submit.prevent="submit" class="space-y-8">
             <InputField label="Emairoutel" v-model="form.email" type="email" icon="at" />
@@ -39,7 +44,7 @@ const submit = () => {
 
             <div class="flex items-center justify-between">
                 <Checkbox name="remember" v-model="form.remember"> Remember me </Checkbox>
-                <TextLink routeName="home" label="Forgot password?" />
+                <TextLink routeName="password.request" label="Forgot password?" />
             </div>
             <PrimaryBtn :disabled="form.processing">Login</PrimaryBtn>
         </form>

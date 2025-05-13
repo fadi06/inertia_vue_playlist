@@ -13,7 +13,9 @@ class AuthenticateController extends Controller
 {
     public function create() 
     {
-        return Inertia::render('Auth/Login');
+        return Inertia::render('Auth/Login', [
+            'status' => session('status')
+        ]);
     }
 
     public function store(LoginFormRequest $request)
@@ -23,7 +25,7 @@ class AuthenticateController extends Controller
         if(Auth::attempt($credientials, $request->boolean('remember'))) {
             $request->session()->regenerate();
 
-            return redirect()->intended();
+            return redirect()->route('home');
         }
 
         return back()->withErrors([
