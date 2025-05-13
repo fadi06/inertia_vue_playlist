@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Auth\EmailVerificationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticateController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -15,4 +16,8 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticateController::class, 'destroy'])->name('logout');
+
+    Route::get('/email/verify', [EmailVerificationController::class, 'notice'])->name('verification.notice');
+    Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'handle'])->middleware(['auth', 'signed'])->name('verification.verify');
+    Route::post('/email/verification-notification', [EmailVerificationController::class, 'send'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 });
