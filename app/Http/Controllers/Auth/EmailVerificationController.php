@@ -11,16 +11,18 @@ class EmailVerificationController extends Controller
 {
     public function notice()
     {
-        return Inertia::render('Auth/VerifyEmail');
+        return Inertia::render('Auth/VerifyEmail', [
+            'status' => session('status')
+        ]);
     }
-    public function handle(EmailVerificationRequest $request) {
+    public function handler(EmailVerificationRequest $request) {
         $request->fulfill();
-        return redirect('/home');
+        return redirect('/');
     }
 
-    public function send(Request $request)
+    public function resend(Request $request)
     {
         $request->user()->sendEmailVerificationNotification();
-        return back()->with('message', 'Verification link sent!');
+        return back()->with('status', 'Verification link sent!');
     }
 }
