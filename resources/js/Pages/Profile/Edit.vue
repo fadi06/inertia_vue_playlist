@@ -1,5 +1,17 @@
-<script setup></script>
+<script setup>
+import UpdateInfo from './Sections/UpdateInfo.vue';
+import UpdatePassword from './Sections/UpdatePassword.vue';
+import DeleteAccount from './Sections/DeleteAccount.vue';
+
+defineProps({
+    user: Object,
+    status: String
+})
+
+</script>
 
 <template>
-    <h1>Profile</h1>
+    <UpdateInfo :user="user" :status="status" />
+    <UpdatePassword />
+    <DeleteAccount />
 </template>
