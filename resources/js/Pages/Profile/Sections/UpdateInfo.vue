@@ -40,7 +40,7 @@ const resendEmail = (e) => {
                 <SessionMessage :status="status" />
                 <p>
                     Your email address is unverified.
-                    <button @click="resendEmail" class="text-indego-500 font-medium underline dark:text-indego-400 disabled:text-slate-400 disabled:cursor-wait">
+                    <button @click="resendEmail" class="text-indigo-500 font-medium underline dark:text-indigo-400 disabled:text-slate-400 disabled:cursor-wait">
                         Click here to re-send the verification email.
                     </button>
                 </p>

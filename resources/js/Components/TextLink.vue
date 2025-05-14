@@ -9,5 +9,5 @@ defineProps({
 
 <template>
     <Link
-        class="text-indego-500 hover:text-indego-600 font-medium underline dark:text-indego-400 dark:hover:text-indego-500" :href="route(routeName)">{{ label }}</Link>
+        class="text-indigo-500 hover:text-indigo-600 font-medium underline dark:text-indigo-400 dark:hover:text-indigo-500" :href="route(routeName)">{{ label }}</Link>
 </template>
