@@ -25,4 +25,24 @@ class Listing extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopeApproved($query)
+    {
+        return $query->where('approved', true);
+    }
+
+    public function scopeFilters($query, $filters)
+    {
+        if($filters['search'] ?? false) {
+            $query->whereAny(['title', 'desc'], 'like', '%' . request('search') . '%');
+        }
+
+        if($filters['user_id'] ?? false) {
+            $query->where('user_id', request('user_id'));
+        }
+
+        if($filters['tag'] ?? false) {
+            $query->where('tags', 'LIKE', '%'.request('tag').'%');
+        }
+    }
 }

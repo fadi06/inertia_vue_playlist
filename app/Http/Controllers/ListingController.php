@@ -14,9 +14,18 @@ class ListingController extends Controller
      */
     public function index()
     {
-        $listings = Listing::with('user')->latest()->paginate(6);
+        $listings = Listing::query()
+            ->whereHas('user', fn ($q) => $q->where('role', '!=', 'suspended'))
+            ->with('user')
+            ->approved()
+            ->filters(request(['search', 'user_id', 'tag']))
+            ->latest()
+            ->paginate(6)
+            ->withQueryString();
+
         return Inertia::render("Home", [
-            "listings"=> $listings
+            "listings"=> $listings,
+            'searchTerm' => request('search')
         ]);
     }
 
