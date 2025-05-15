@@ -70,5 +70,5 @@ const search = () => {
         No record founds.
     </div>
 
-    <PaginationLinks :Paginator="listings" />
+    <PaginationLinks :paginator="listings" />
 </template>

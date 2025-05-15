@@ -1,6 +1,6 @@
 <script setup>
 defineProps({
-    Paginator: Object
+    paginator: Object
 })
 
 const makeLabel = (label) => {
@@ -17,11 +17,11 @@ const makeLabel = (label) => {
 <template>
     <div class="flex justify-between items-start mt-8">
         <p class="text-slate-600 dark:text-slate-400 text-sm">
-            Showing {{  Paginator.from }} to {{ Paginator.to }} of {{ Paginator.total }} results
+            Showing {{  paginator.from }} to {{ paginator.to }} of {{ paginator.total }} results
         </p>
 
         <div class="flex items-venter rounded-md overflow-hidden shadow-lg">
-            <div v-for="(links, i) in Paginator.links" :key="i">
+            <div v-for="(links, i) in paginator.links" :key="i">
                 <component
                     :is="links.url ? 'Link' : 'span'"
                     :href="links.url"

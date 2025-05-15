@@ -116,7 +116,7 @@ class ListingController extends Controller implements HasMiddleware
 
         $fileds['tags'] = implode(',', array_unique(array_filter(array_map('trim', (explode(',', $fileds['tags']))))));
 
-        $listing->update($fileds);
+        $listing->update([...$fileds, 'approved' => false]);
 
         return redirect()->route('home')->with('status','Listing updated successfully');
     }
