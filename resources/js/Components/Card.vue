@@ -19,7 +19,7 @@ const searchTag = (tag) => {
 <template>
     <div class="bg-white rounded-lg shoadow-lg overflow-hidden dark:bg-slate-800 h-full flex flex-col justify-between">
         <div>
-            <Link  href="">
+            <Link  :href="route('listing.show', listing.id)">
                 <img :src="listing.image ? `/storage/${listing.image}` : '/storage/images/listings/default.png'" class="w-full h-48 bg-slate-300 object-cover object-center" />
             </Link>
 

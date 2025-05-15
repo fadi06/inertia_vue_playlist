@@ -18,6 +18,7 @@ class Listing extends Model
         'email',
         'link',
         'tags',
+        'image',
         'approved'
     ];
 

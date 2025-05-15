@@ -1,15 +1,16 @@
 <script setup>
-import Container from '../Components/Container.vue';
 import Card from '../Components/Card.vue';
 import PaginationLinks from '../Components/PaginationLinks.vue';
 import InputField from '../Components/InputField.vue';
+import SessionMessage from '../Components/SessionMessage.vue';
 import { Link, router, useForm } from '@inertiajs/vue3';
 
 const params = route().params;
 
 const props = defineProps({
     listings: Object,
-    searchTerm: String
+    searchTerm: String,
+    status: String
 })
 console.log(params)
 const form = useForm({
@@ -27,6 +28,7 @@ const search = () => {
     <Head title="Latest listings" />
 
     <div class="flex items-center justify-between mb-4">
+        <SessionMessage :status="status" />
         <div class="flex item-center gap-2">
             <Link
                 :href="route('home', { ...params, tag: null, page: null })"
