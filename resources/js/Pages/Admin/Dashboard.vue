@@ -4,7 +4,6 @@ import RoleSelect from '../../Components/RoleSelect.vue';
 import SessionMessage from '../../Components/SessionMessage.vue';
 import InputField from '../../Components/InputField.vue';
 import { router, useForm } from '@inertiajs/vue3';
-import { ref } from 'vue';
 
 const params = route().params;
 const props = defineProps({
@@ -107,7 +106,7 @@ const switchSuspend = (e) => {
                     </div>
                 </td>
                 <td class="w-1/6 py-5 px-3 text-right">
-                    Listing view
+                    <Link :href="route('user.show', user)" class="fa-solid fa-external-link px-2 py-2 "></Link>
                 </td>
             </tr>
         </tbody>

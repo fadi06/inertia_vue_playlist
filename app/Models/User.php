@@ -64,4 +64,9 @@ class User extends Authenticatable implements MustVerifyEmail
             return $query->where('role', 'suspended');
         }
     }
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
 }
