@@ -2,6 +2,7 @@
 import { Link } from '@inertiajs/vue3';
 import Title from '../Components/Title.vue'
 import PaginationLinks from '../Components/PaginationLinks.vue'
+import SessionMessage from '../Components/SessionMessage.vue'
 import { router } from '@inertiajs/vue3';
 
 const props = defineProps ({
@@ -21,6 +22,7 @@ console.log(props.listing)
 <template>
     <Head title="- Dashboard" />
     <div v-if="listing" class="mb-8">
+        <SessionMessage :status="status" />
         <div v-if="Object.keys(listing.data).length">
             <div class="mb-6">
                 <div class="flex items-center justify-between mb-4">

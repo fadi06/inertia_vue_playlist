@@ -51,4 +51,17 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Listing::class);
     }
+
+    public function scopeFilter($query, $filter)
+    {
+        if ($filter['search'] ?? false) {
+            return $query->where(function ($query) {
+                $query->whereAny(['name', 'email', 'role'], 'like', '%' . request('search') . '%');
+            });
+        }
+
+        if ($filter['user_role'] ?? false) {
+            return $query->where('role', 'suspended');
+        }
+    }
 }

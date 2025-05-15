@@ -26,6 +26,10 @@ const show = ref(false);
                         <i class="fa-solid fa-angle-down"></i>
                     </div>
 
+                    <Link :href="route('admin.index')" class="hover:bg-slate-700 h-6 w-6 grid place-items-center rounded-full hover:outline outline-1 outline-white">
+                        <i class="fa-solid fa-lock"></i>
+                    </Link>
+
                     <div
                         v-show="show"
                         @click="show = false"
